@@ -1,0 +1,842 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:#222;
+}
+
+.container{
+    width:700px;
+    height:600px;
+
+    display:grid;
+
+    /* 4 Equal Columns */
+    grid-template-columns:repeat(4,1fr);
+
+    /* equal Rows */
+    grid-template-rows:150px 150px 150px 150px;
+    
+    gap:15px;
+}
+
+.box{
+    background:#fff;
+    border-radius:15px;
+    display:flex;
+    overflow:hidden;
+    position: relative;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* 1 */
+.box1{
+    grid-column:1;
+    grid-row:1 / 3;
+    background-image: url(https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTDmEaljPUGyecF95qhnu_r4SvLMclrG7f2RC8hOW7v53Q4RGQB);
+    background-size: cover;
+    position: relative;
+    background-position: center;
+}
+
+
+/* .cards{
+    position:absolute;
+    bottom:15px;
+    left:15px;
+    right:15px;
+
+    display:flex;
+    justify-content:space-between;
+} */
+
+.card{
+    position: absolute;
+    bottom: 14px;
+    left: 5px;
+    right: 5px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 4px;
+}
+
+
+
+.prof{
+    height:50px;
+    width:50px;
+    background:white;
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background-image:url("data:image/png;base64,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");
+
+    background-size: cover;
+    background-position: center;
+    position:absolute;
+    top:15px;
+    left:15px;
+}
+
+#d3_1,
+#d3_2,
+#d3_3{
+    height: 40px;
+    width:100px;
+    
+
+    background: rgba(25, 25, 25, 0.85);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    color: white;
+}
+
+.l1,
+.l2,
+.l3{
+    height: 15px;
+    width: 15px;
+
+    background: #ffd900;
+    border-radius: 50%;
+
+    position: absolute;
+    left:2px;   
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+}
+
+.l1::after{
+    content: "🔥";
+    font-size: 10px;
+}
+
+.l2::after{
+    content: "〽";
+    font-size: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+.l3::after{
+    content: "🏃";
+    font-size: 10px;
+}
+
+.text1,
+.text2,
+.text3{
+    margin: 0 0 0 8px;
+
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    line-height: 13px;
+
+    font-weight: bold;
+}
+
+.text1::before{
+    content: "35";
+    display: block;
+    font-size: 8px;
+    line-height: 6%;
+    position: absolute;
+    left:18px;
+    top:15px;
+}
+
+.text1::after{
+    content: "MIN";
+    display: block;
+    font-size: 8px;
+    position: absolute;
+    left:18px;
+    top:18px;
+}
+
+
+/* second card text */
+
+.text2::before{
+    content: "NO";
+    display: block;
+    font-size: 6px;
+    line-height: 18px;
+    position: absolute;
+    left:18px;
+    top:5px;
+}
+
+.text2::after{
+    content: "EXCUSES";
+    display: block;
+    font-size: 6px;
+    position: absolute;
+    left:18px;
+    top:15px;
+
+}
+
+
+/* third card text */
+
+.text3::before{
+    content: "7";
+    display: block;
+    font-size: 8px;
+    line-height: 18px;
+    position: absolute;
+    left:18px;
+    top:6px;
+}
+
+.text3::after{
+    content: "DAYS";
+    display: block;
+    font-size: 8px;
+    position: absolute;
+    left:18px;
+    top:15px;
+}
+
+
+
+/*================================================================*/
+
+/* 2 */
+.box2{
+    grid-column:2;
+    grid-row:1;
+    background-color:#FED703;
+    position:relative;
+}
+
+/* 3 */
+.box3{
+    grid-column:3;
+    grid-row:1;
+}
+
+/* 4 */
+.box4{
+    grid-column:4;
+    grid-row:1 / 3;
+}
+
+/* 5 */
+.box5{
+    grid-column:1;
+    grid-row:3;
+    background-color:#FEFEFE;
+}
+
+/* 6 (Center Big Box) */
+.box6{
+    grid-column:2 / 4;
+    grid-row:2 / 4;
+    background-color:#FEF7E2;
+}
+
+/* 7 */
+.box7{
+    grid-column:4;
+    grid-row:3 / 5;
+    background-color:#F3BFB1;
+    background-image: url(https://kommodo.ai/i/773KHy0Q7riynhrQQCK1.png);
+    background-size: cover;
+    background-position: center;
+}
+
+/* 8 */
+.box8{
+    grid-column:1 / 3;
+    grid-row:4;
+    background-color:#ECB1A3;
+    
+
+}
+
+/* 9 */
+.box9{
+    grid-column:3;
+    grid-row:4;
+    background-color:#C4B5B1;
+    background-image: url(Screenshot\ 2026-08-06\ 012114.png);
+    background-size: cover;
+    background-position: center;
+}
+
+/*====================================================================*/
+
+.logo{
+    height:20px;
+    width:30px;
+    background-image:url("Filter-Sort-Lines-Ascending--Streamline-Ultimate.png");
+    transform: rotate(-90deg);
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: top left;
+    position:absolute;
+    top:10px;
+    left:10px;
+}
+
+.db2{
+    margin-top:15px;   
+    font-size:10px;      
+    line-height:1.2;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:600;
+    width:100%;
+    position: absolute;
+    top:30px;
+    left:13px;
+}
+
+.stores{
+    position: absolute;
+
+    left: 6px;
+    right: 6px;
+    bottom: 10px;
+
+    display: flex;
+    flex-direction: row;       /* IMPORTANT */
+    gap: 10px;
+
+    align-items: center;
+}
+
+
+/* INDIVIDUAL BUTTON */
+.d2{
+    flex: 1;
+    width: auto;
+    height: 38px;
+
+    background: black;
+    color: white;
+
+    border-radius: 7px;
+
+    padding: 4px 7px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 3px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;          /* text bahar nahi niklega */
+}
+
+
+/* ICON */
+.goo1,
+.app1{
+    width: 15px;
+    height: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.goo1 i{
+    font-size: 20px;
+}
+
+.app1 i{
+    font-size: 20px;
+}
+
+
+/* TEXT */
+.store-text{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    flex: 1;
+    min-width: 0;
+}
+
+
+/* GET IT ON / DOWNLOAD ON THE */
+.head1{
+    margin: 0;
+    padding: 0;
+
+    font-size: 4px;
+    font-weight: 400;
+
+    line-height: 6px;
+
+    white-space: nowrap;
+}
+
+
+/* GOOGLE PLAY / APP STORE */
+.hed2{
+    margin: 0;
+    padding: 0;
+
+    font-size: 7px;
+    font-weight: 500;
+
+    line-height: 11px;
+
+    white-space: nowrap;
+}
+/* ================================================================= */
+
+
+.d6{
+    height:100px;
+    width: 100%;
+    background-image: url(Screenshot\ 2026-08-05\ 212653.png);
+    background-repeat:no-repeat;
+    background-size: contain;
+    background-position:center;  
+}
+
+.box5{
+    display: flex;
+    position: relative;
+    justify-content: flex-start; /* left */
+    align-items: flex-start;     /* top */
+}
+
+#p5{
+    font-size: 13px;
+    margin: 10px;
+}
+
+.pro{
+    height:30px;
+    width:30px;
+    background-image: url("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSrEDGbCk15EsEqaCw9m5u9RGArThq7nP9ombhix9XYjYxxnsNZ");
+    background-size: cover;
+    border-radius: 50%;
+    display: flex;
+    gap:10px;
+    align-items: center;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}       
+
+#p5_1{
+    position: absolute;
+    bottom: 15px;
+    left: 45px; /* logo ke baad */
+    margin: 0;
+    font-size: 8px;
+    color: black;
+}
+
+
+#p3{
+    font-size: 7px;
+    width:100%;
+    
+
+}
+
+#p33{
+    font-size: 21px;
+    width:100%;
+    margin: 2px 0 25px 0;
+    
+}
+
+#p333{
+    font-size: 7px;
+    width:100%;
+    margin:-5px;
+    
+}
+
+#p3333{
+    font-size: 10px;
+    width:100%;
+    margin: 8px 0; 
+}
+
+.b3{
+    height:10px;
+    width:100%;
+    background-image: url("Screenshot\ 2026-08-06\ 003012.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+.box3{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex; /* text upar, image niche */
+    padding: 10px;
+}
+
+.pr{
+    height:20px;
+    width:20px;
+    background:white;
+    /* border-radius:50%; */
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background-image:url(Screenshot\ 2026-08-06\ 013039.png);
+
+    background-size: cover;
+    background-position: center;
+    position:absolute;
+    top:15px;
+    left:15px;
+}
+
+.d4{
+    display:flex;
+    justify-content: flex-start;
+}
+
+#p4_1{
+    position: absolute;
+    top: 20px;
+    left: 39px; /* logo ke baad */
+    margin: 0;
+    font-size: 9px;
+    color: black;
+}
+
+#p4_2{
+    position: absolute;
+    top:70px;
+    margin: 0;
+    font-size: 20px;
+    
+}
+
+.proff{
+    position:absolute;
+    left:10px;
+    right:10px;
+    bottom:10px;
+
+    height:120px;
+    background:#F5BEB1;
+    border-radius:15px;
+
+    overflow:hidden;
+}
+
+/* Location icon */
+
+.loc{
+    position:absolute;
+    top:10px;
+    left:10px;
+
+    width:40px;
+    height:40px;
+    border-radius:50%;
+
+    background:#000;
+    background-image:url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSsri5EjFbZ5xSM1N7MdYCYxy0VT0HV6LSqHsQfaULwUdDaMDlT);
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:50px;
+}
+
+/* Address */
+
+.address{
+    position:absolute;
+    top:18px;
+    left:55px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.ad1,
+.ad2{
+    margin:0;
+    font-size:8px;
+    font-weight:700;
+    line-height:1.2;
+}
+
+/* Website */
+
+.site{
+    position:absolute;
+    left:18px;
+    bottom:18px;
+
+    margin:0;
+
+    font-size:8px;
+    font-weight:700;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/*=======================*/
+
+.img{
+    position:absolute;
+    top:10px;
+    left:10px;
+    right:10px;
+    bottom:5px;
+    width:45%;
+    height:120px;
+    background :black;
+    border-radius:15px;
+    background-image: url("Screenshot\ 2026-08-07\ 001906.png");
+    background-size: cover;  
+}
+
+.content8{
+    display:flex;
+    justify-content:flex-end;
+} 
+
+#c1{
+    font-size: 15px;
+    position:absolute;
+    margin: 10px;
+    letter-spacing: -0.5px;
+    margin: 0;
+    text-transform: uppercase;
+    top:10px;
+    left:180px;
+    font-weight:bolder;
+}
+
+#c2{
+    font-size: 40px;
+    position:absolute;
+    margin: 0px;
+    letter-spacing: -0.9px;
+    margin: 0;
+    text-transform: lowercase;
+    top:75px;
+    left:180px;
+    font-weight:bolder;
+}
+
+#c3{
+    font-size: 10px;
+    position:absolute;
+    margin: 0px;
+    letter-spacing: -0.5px;
+    margin: 0;
+    text-transform: uppercase;
+    top:120px;
+    left:180px;
+    font-weight:100;
+}
+
+#a1{
+    height:25px;
+    width:25px;
+    background-image: url(https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR6XaJA6IPKeSm6k1oIdiyyU27y5i5cHJCOuezOS1plwZIuflOD);
+    background-size: cover;
+    background-position:center ;
+    background-color: green;
+    border-radius: 50%;
+    display: flex;
+    gap:10px;
+    align-items: center;
+    position: absolute;
+    bottom: 27px;
+    left: 262px;
+}  
+
+#a2{
+    height:25px;
+    width:25px;
+    background-image: url(https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRJJpM5fGfX6qkvYzC6wEnkcnBFXfTL3f3zltLx7qyu84FI62lY);
+    background-size: cover;
+    background-color: blue;
+    border-radius: 50%;
+    display: flex;
+    gap:10px;
+    align-items: center;
+    position: absolute;
+    bottom: 27px;
+    left: 282px;
+}  
+
+#a3{
+    height:25px;
+    width:25px;
+    background-image: url(Screenshot\ 2026-08-07\ 020833.png);
+    background-size: cover;
+    background-color: yellow;
+    border-radius: 50%;
+    display: flex;
+    gap:10px;
+    align-items: center;
+    position: absolute;
+    bottom: 27px;
+    left: 303px;
+}  
+
+/* .line{
+    width: 80%;
+    height: 2px;
+    position: absolute;
+    top:15px;
+    background: linear-gradient(to right,
+        black 0%,
+        black 30%,
+        rgba(0,0,0,0) 100%);
+} */
+
+.line{
+    width: 80%;
+    height: 2px;
+    position: absolute;
+    top: 15px;
+
+    background: linear-gradient(
+        to right,
+        black 0%,
+        black 1%,
+        transparent 100%
+    );
+}
+
+.head2{
+    display:flex;
+    justify-content: flex-start;
+    font-size:small;
+    font-weight:300;
+    gap:40px;
+    position: absolute;
+    left:45px;
+    top:27px;
+}
+
+.logoo{
+    height:28px;
+    width:28px;
+    background-image: url("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSrEDGbCk15EsEqaCw9m5u9RGArThq7nP9ombhix9XYjYxxnsNZ");
+    background-size: cover;
+    border-radius: 50%;
+    display: flex;
+    gap:10px;
+    align-items: center;
+    position: absolute;
+    top:20px;
+    left: 10px;
+}
+
+.phone{
+
+    width:70%;
+    height:90%;
+    position: absolute;
+    top:20%;
+
+    border:6px solid #222;
+    border-radius:35px;
+
+    overflow:hidden;
+}
+
+/* Image */
+
+.phone img{
+    position: absolute;
+    bottom:0px;
+    border-radius: 28px;
+    left:0px;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* Text */
+
+.content{
+
+    position:absolute;
+
+    bottom:40px;
+    left:0;
+
+    width:100%;
+
+    text-align:center;
+}
+
+.h7_1{
+
+    color:white;
+    font-size:10px;
+    font-family:Arial;
+    font-weight:bold;
+    position: absolute;
+    bottom: 8%;
+    left:5%;
+
+    margin-bottom:25px;
+}
+
+
+.b7{
+    width:39px;
+    height:15px;
+    border:none;
+    border-radius:30px;
+    background:#ffd600;
+    font-size:6px;
+    font-weight:bold;
+    position: absolute;
+    bottom:4px;
+    left:10px;
+    cursor:pointer;
+}
+
+.search{
+    color:#fff;
+    position: absolute;
+    bottom:5px;
+    right:5px;
+}
