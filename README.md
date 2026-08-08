@@ -42,8 +42,7 @@ While creating this assignment, I practiced:
 
 ## 📸 Preview
 
-![FlexFit Website Preview](<img width="888" height="820" alt="Screenshot 2026-08-09 004227" src="https://github.com/user-attachments/assets/35198931-4f1f-4a72-a1ee-311e1081737e" />
-)
+![FlexFit Website Preview](./Screenshot%202026-08-09%20004227.png)
 
 ## 🎓 Course
 
